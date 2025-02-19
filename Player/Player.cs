@@ -5,18 +5,21 @@ public partial class Player : CharacterBody2D
 {
 	[Export]
 	public PackedScene BulletScene;
-	public const float Cooldown = 0.3f;
 	public const float Speed = 300.0f;
+	private bool CanShoot = true;
+	private Timer timer;
 	Marker2D BulletSpawnPoint;
 
 	public override void _Ready()
 	{
 		BulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
+		timer = GetNode<Timer>("%Timer");
+		timer.Timeout += OnTimerTimeout;
 	}
 
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionPressed("ui_accept"))
+		if (Input.IsActionPressed("ui_accept") && CanShoot)
 		{
 			Shoot();
 		}
@@ -34,9 +37,16 @@ public partial class Player : CharacterBody2D
 
 	public void Shoot()
 	{
+		CanShoot = false;
 		var bullet = BulletScene.Instantiate<Node2D>();
 		bullet.GlobalPosition = BulletSpawnPoint.GlobalPosition;
 		GetNode("/root/Game").AddChild(bullet);
+		timer.Start();
+	}
+
+	private void OnTimerTimeout()
+	{
+		CanShoot = true;
 	}
 
 }
