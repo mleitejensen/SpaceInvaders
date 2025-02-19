@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://yxh7cyjn8xv0"]
+[gd_scene load_steps=4 format=3 uid="uid://yxh7cyjn8xv0"]
 
 [ext_resource type="PackedScene" uid="uid://bin43d456rvj0" path="res://Player/player.tscn" id="1_eeywv"]
+[ext_resource type="PackedScene" uid="uid://4vsqe5i4eay3" path="res://Enemy/enemy.tscn" id="2_qyane"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721uc"]
 size = Vector2(66, 109)
@@ -40,3 +41,35 @@ shape = SubResource("RectangleShape2D_721uc")
 
 [node name="Player" parent="." instance=ExtResource("1_eeywv")]
 position = Vector2(566, 598)
+
+[node name="Group" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Group" instance=ExtResource("2_qyane")]
+position = Vector2(94, 84)
+
+[node name="Enemy2" parent="Group" instance=ExtResource("2_qyane")]
+position = Vector2(145, 84)
+
+[node name="Enemy3" parent="Group" instance=ExtResource("2_qyane")]
+position = Vector2(194, 84)
+
+[node name="Enemy4" parent="Group" instance=ExtResource("2_qyane")]
+position = Vector2(243, 84)
+
+[node name="Enemy5" parent="Group" instance=ExtResource("2_qyane")]
+position = Vector2(291, 84)
+
+[node name="Enemy6" parent="Group" instance=ExtResource("2_qyane")]
+position = Vector2(339, 84)
+
+[node name="Enemy7" parent="Group" instance=ExtResource("2_qyane")]
+position = Vector2(390, 84)
+
+[node name="Enemy8" parent="Group" instance=ExtResource("2_qyane")]
+position = Vector2(439, 84)
+
+[node name="Enemy9" parent="Group" instance=ExtResource("2_qyane")]
+position = Vector2(488, 84)
+
+[node name="Enemy10" parent="Group" instance=ExtResource("2_qyane")]
+position = Vector2(536, 84)

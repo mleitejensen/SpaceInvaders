@@ -1,16 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://4vsqe5i4eay3"]
+[gd_scene load_steps=6 format=3 uid="uid://4vsqe5i4eay3"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy.cs" id="1_v6rkq"]
 [ext_resource type="Texture2D" uid="uid://p8tok1ae2hdo" path="res://Enemy/Assets/alien1.png" id="2_6xhm5"]
+[ext_resource type="Texture2D" uid="uid://cf00jhnm67mtu" path="res://Enemy/Assets/alien2.png" id="3_vxvg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rivmd"]
 size = Vector2(39, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tmkup"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6xhm5")
+}],
+"loop": false,
+"name": &"first",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vxvg1")
+}],
+"loop": true,
+"name": &"second",
+"speed": 5.0
+}]
 
 [node name="Enemy" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_v6rkq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
 scale = Vector2(2, 2)
 texture = ExtResource("2_6xhm5")
 
@@ -21,3 +43,13 @@ shape = SubResource("RectangleShape2D_rivmd")
 [node name="BulletSpawn" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, 18)
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tmkup")
+animation = &"second"
