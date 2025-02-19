@@ -3,24 +3,40 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	[Export]
+	public PackedScene BulletScene;
+	public const float Cooldown = 0.3f;
 	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
+	Marker2D BulletSpawnPoint;
+
+	public override void _Ready()
+	{
+		BulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
+	}
+
+	public override void _Process(double delta)
+	{
+		if (Input.IsActionPressed("ui_accept"))
+		{
+			Shoot();
+		}
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
-
 		float direction = Input.GetAxis("ui_left", "ui_right");
-		if (direction != 0)
-		{
-			velocity.X = direction * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
+		velocity.X = direction * Speed;
 
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+	public void Shoot()
+	{
+		var bullet = BulletScene.Instantiate<Node2D>();
+		bullet.GlobalPosition = BulletSpawnPoint.GlobalPosition;
+		GetNode("/root/Game").AddChild(bullet);
+	}
+
 }
