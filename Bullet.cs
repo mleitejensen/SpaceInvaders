@@ -3,7 +3,7 @@ using System;
 
 public partial class Bullet : CharacterBody2D
 {
-	private float speed = 200;
+	private float speed = 500;
 	private Timer timer;
 
 	public override void _Ready()
