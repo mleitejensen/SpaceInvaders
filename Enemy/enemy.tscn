@@ -44,10 +44,6 @@ shape = SubResource("RectangleShape2D_rivmd")
 unique_name_in_owner = true
 position = Vector2(0, 18)
 
-[node name="Timer" type="Timer" parent="."]
-unique_name_in_owner = true
-autostart = true
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(2, 2)

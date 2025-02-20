@@ -8,6 +8,10 @@ public partial class SignalBus : Node
 
 	[Signal]
 	public delegate void PlayerHealthChangeEventHandler(int healthPoints);
+	[Signal]
+	public delegate void EnemyChangeDirectionEventHandler();
+	[Signal]
+	public delegate void EnemyMoveEventHandler();
 
 	public override void _Ready()
 	{
