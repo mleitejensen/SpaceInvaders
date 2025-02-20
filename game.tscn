@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://yxh7cyjn8xv0"]
+[gd_scene load_steps=6 format=3 uid="uid://yxh7cyjn8xv0"]
 
 [ext_resource type="PackedScene" uid="uid://bin43d456rvj0" path="res://Player/player.tscn" id="1_eeywv"]
+[ext_resource type="Script" path="res://GameManager.cs" id="1_warsr"]
 [ext_resource type="PackedScene" uid="uid://4vsqe5i4eay3" path="res://Enemy/enemy.tscn" id="2_qyane"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721uc"]
 size = Vector2(66, 109)
 
+[sub_resource type="TileSet" id="TileSet_coxtt"]
+tile_size = Vector2i(64, 64)
+
 [node name="Game" type="Node2D"]
+script = ExtResource("1_warsr")
+EnemyScene = ExtResource("2_qyane")
 
 [node name="background" type="Control" parent="."]
 layout_mode = 3
@@ -25,6 +31,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -33.0
+offset_top = -63.0
+offset_right = 162.0
+offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -42,34 +52,9 @@ shape = SubResource("RectangleShape2D_721uc")
 [node name="Player" parent="." instance=ExtResource("1_eeywv")]
 position = Vector2(566, 598)
 
-[node name="Group" type="Node2D" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_coxtt")
 
-[node name="Enemy" parent="Group" instance=ExtResource("2_qyane")]
-position = Vector2(94, 84)
-
-[node name="Enemy2" parent="Group" instance=ExtResource("2_qyane")]
-position = Vector2(145, 84)
-
-[node name="Enemy3" parent="Group" instance=ExtResource("2_qyane")]
-position = Vector2(194, 84)
-
-[node name="Enemy4" parent="Group" instance=ExtResource("2_qyane")]
-position = Vector2(243, 84)
-
-[node name="Enemy5" parent="Group" instance=ExtResource("2_qyane")]
-position = Vector2(291, 84)
-
-[node name="Enemy6" parent="Group" instance=ExtResource("2_qyane")]
-position = Vector2(339, 84)
-
-[node name="Enemy7" parent="Group" instance=ExtResource("2_qyane")]
-position = Vector2(390, 84)
-
-[node name="Enemy8" parent="Group" instance=ExtResource("2_qyane")]
-position = Vector2(439, 84)
-
-[node name="Enemy9" parent="Group" instance=ExtResource("2_qyane")]
-position = Vector2(488, 84)
-
-[node name="Enemy10" parent="Group" instance=ExtResource("2_qyane")]
-position = Vector2(536, 84)
+[node name="MoveEnemy" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true

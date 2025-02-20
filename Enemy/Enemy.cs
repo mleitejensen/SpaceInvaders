@@ -3,21 +3,19 @@ using System;
 
 public partial class Enemy : CharacterBody2D
 {
-	public const float Speed = 300.0f;
-	public Timer timer;
-	public Sprite2D sprite2D;
 	public AnimatedSprite2D animatedSprite2D;
+	public Timer timer;
+	public TileMapLayer tilemap;
+	private int speed = 64;
+	private bool movingRight = true;
 
 	public override void _Ready()
 	{
-		timer = GetNode<Timer>("%Timer");
-		timer.Timeout += OnTimerTimeout;
+		SignalBus.Instance.Connect(SignalBus.SignalName.EnemyMove, Callable.From(OnMove));
+		SignalBus.Instance.Connect(SignalBus.SignalName.EnemyChangeDirection, Callable.From(OnChangeDirection));
+
 		animatedSprite2D = GetNode<AnimatedSprite2D>("%AnimatedSprite2D");
-	}
-
-	public override void _Process(double delta)
-	{
-
+		tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -25,9 +23,10 @@ public partial class Enemy : CharacterBody2D
 
 	}
 
-	private void OnTimerTimeout()
+	private void OnMove()
 	{
-		Position = new Vector2(Position.X + 40, Position.Y);
+		var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(GlobalPosition.X + (movingRight ? 64 : -64), GlobalPosition.Y)));
+		Position = targetPosition;
 
 		if (animatedSprite2D.Animation == "first")
 		{
@@ -38,5 +37,10 @@ public partial class Enemy : CharacterBody2D
 			animatedSprite2D.Play("first");
 
 		}
+	}
+
+	private void OnChangeDirection()
+	{
+		movingRight = !movingRight;
 	}
 }
