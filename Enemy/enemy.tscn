@@ -30,12 +30,6 @@ animations = [{
 motion_mode = 1
 script = ExtResource("1_v6rkq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-scale = Vector2(2, 2)
-texture = ExtResource("2_6xhm5")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_rivmd")

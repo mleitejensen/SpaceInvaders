@@ -3,9 +3,8 @@ using System;
 
 public partial class Enemy : CharacterBody2D
 {
-	public Timer timer;
-	public Sprite2D sprite2D;
 	public AnimatedSprite2D animatedSprite2D;
+	public Timer timer;
 	public TileMapLayer tilemap;
 	private int speed = 64;
 	private bool movingRight = true;
