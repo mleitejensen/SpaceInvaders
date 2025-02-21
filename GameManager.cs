@@ -10,6 +10,7 @@ public partial class GameManager : Node2D
 	private TileMapLayer tilemap;
 	private Timer timer;
 	private const int MaxNumberOfMoves = 6;
+	private const int NumberOfRows = 6;
 	private int numberOfMoves = 0;
 	private bool MovingRight = true;
 	private bool isNotFirstMove = false;
@@ -21,10 +22,14 @@ public partial class GameManager : Node2D
 
 		for (int i = 1; i < NumberOfEnemies; i++)
 		{
-			var enemy = EnemyScene.Instantiate<CharacterBody2D>();
-			var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(64 * i, 64)));
-			enemy.Position = targetPosition;
-			AddChild(enemy);
+			for (int j = 1; j < NumberOfRows; j++)
+			{
+				var enemy = EnemyScene.Instantiate<CharacterBody2D>();
+				var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(64 * i, 64 * j)));
+				enemy.Position = targetPosition;
+				AddChild(enemy);
+
+			}
 		}
 	}
 
