@@ -8,27 +8,32 @@ public partial class GameManager : Node2D
 	[Export]
 	public int NumberOfEnemies = 11;
 	private TileMapLayer tilemap;
-	private Timer timer;
+	private Timer timerMoveEnemy;
 	private const int MaxNumberOfMoves = 6;
 	private const int NumberOfRows = 6;
 	private int numberOfMoves = 0;
 	private bool MovingRight = true;
 	private bool isNotFirstMove = false;
+	private Node enemyGroup;
+	private Timer timerEnemyShoot;
 	public override void _Ready()
 	{
-		timer = GetNode<Timer>("%MoveEnemy");
-		timer.Timeout += OnTimerTimeout;
+		timerMoveEnemy = GetNode<Timer>("%MoveEnemy");
 		tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
+		enemyGroup = GetNode<Node>("%Enemies");
+		timerEnemyShoot = GetNode<Timer>("%EnemyShoot");
 
-		for (int i = 1; i < NumberOfEnemies; i++)
+		timerMoveEnemy.Timeout += OnTimerMoveEnemyTimeout;
+		timerEnemyShoot.Timeout += OnTimerEnemyShootTimeout;
+
+		for (int index = 1; index < NumberOfEnemies; index++)
 		{
-			for (int j = 1; j < NumberOfRows; j++)
+			for (int rowIndex = 1; rowIndex < NumberOfRows; rowIndex++)
 			{
 				var enemy = EnemyScene.Instantiate<CharacterBody2D>();
-				var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(64 * i, 64 * j)));
+				var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(64 * index, 64 * rowIndex)));
 				enemy.Position = targetPosition;
-				AddChild(enemy);
-
+				enemyGroup.AddChild(enemy);
 			}
 		}
 	}
@@ -37,7 +42,7 @@ public partial class GameManager : Node2D
 	{
 
 	}
-	private void OnTimerTimeout()
+	private void OnTimerMoveEnemyTimeout()
 	{
 		if (numberOfMoves >= MaxNumberOfMoves || (numberOfMoves <= 0 && isNotFirstMove))
 		{
@@ -60,5 +65,12 @@ public partial class GameManager : Node2D
 		isNotFirstMove = true;
 	}
 
+	private void OnTimerEnemyShootTimeout()
+	{
+		var list = enemyGroup.GetChildren();
+		int randomIndex = new Random().Next(0, list.Count);
+		Enemy enemy = (Enemy)enemyGroup.GetChildren()[randomIndex];
+		enemy.Shoot();
+	}
 
 }

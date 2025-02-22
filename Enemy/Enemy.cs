@@ -3,6 +3,9 @@ using System;
 
 public partial class Enemy : CharacterBody2D
 {
+	[Export]
+	public PackedScene enemyBullet;
+	public Marker2D bulletSpawnPoint;
 	public AnimatedSprite2D animatedSprite2D;
 	public Timer timer;
 	public TileMapLayer tilemap;
@@ -18,6 +21,7 @@ public partial class Enemy : CharacterBody2D
 		animatedSprite2D = GetNode<AnimatedSprite2D>("%AnimatedSprite2D");
 		tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
 		hitbox = GetNode<Area2D>("%Hitbox");
+		bulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
 
 		hitbox.BodyEntered += OnBodyEntered;
 	}
@@ -39,7 +43,6 @@ public partial class Enemy : CharacterBody2D
 		else
 		{
 			animatedSprite2D.Play("first");
-
 		}
 	}
 
@@ -52,5 +55,14 @@ public partial class Enemy : CharacterBody2D
 	{
 		body.QueueFree();
 		QueueFree();
+	}
+
+	public void Shoot()
+	{
+		GD.Print("Shot");
+		enemyBullet.Instantiate();
+		var bullet = enemyBullet.Instantiate<Node2D>();
+		bullet.GlobalPosition = bulletSpawnPoint.GlobalPosition;
+		GetNode("/root/Game").AddChild(bullet);
 	}
 }

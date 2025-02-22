@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://4vsqe5i4eay3"]
+[gd_scene load_steps=8 format=3 uid="uid://4vsqe5i4eay3"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy.cs" id="1_v6rkq"]
 [ext_resource type="Texture2D" uid="uid://p8tok1ae2hdo" path="res://Enemy/Assets/alien1.png" id="2_6xhm5"]
+[ext_resource type="PackedScene" uid="uid://cyb2ouoc186wr" path="res://Enemy/enemy_bullet.tscn" id="2_bvd4d"]
 [ext_resource type="Texture2D" uid="uid://cf00jhnm67mtu" path="res://Enemy/Assets/alien2.png" id="3_vxvg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rivmd"]
@@ -33,6 +34,7 @@ size = Vector2(40, 27)
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_v6rkq")
+enemyBullet = ExtResource("2_bvd4d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
@@ -50,7 +52,8 @@ animation = &"second"
 
 [node name="Hitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 4
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -3.5)

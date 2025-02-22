@@ -8,13 +8,17 @@ public partial class Player : CharacterBody2D
 	public const float Speed = 300.0f;
 	private bool CanShoot = true;
 	private Timer timer;
-	Marker2D BulletSpawnPoint;
+	private Marker2D BulletSpawnPoint;
+	private Area2D hitbox;
 
 	public override void _Ready()
 	{
 		BulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
 		timer = GetNode<Timer>("%Timer");
+		hitbox = GetNode<Area2D>("%Hitbox");
+
 		timer.Timeout += OnTimerTimeout;
+		hitbox.BodyEntered += OnBodyEntered;
 	}
 
 	public override void _Process(double delta)
@@ -47,6 +51,12 @@ public partial class Player : CharacterBody2D
 	private void OnTimerTimeout()
 	{
 		CanShoot = true;
+	}
+
+	private void OnBodyEntered(Node2D body)
+	{
+		body.QueueFree();
+		GD.Print("Take damage");
 	}
 
 }

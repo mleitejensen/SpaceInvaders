@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bin43d456rvj0"]
+[gd_scene load_steps=6 format=3 uid="uid://bin43d456rvj0"]
 
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_ovxkx"]
-[ext_resource type="PackedScene" uid="uid://hngeqnx6ohpy" path="res://Player/bullet.tscn" id="2_3yfsi"]
+[ext_resource type="PackedScene" uid="uid://hngeqnx6ohpy" path="res://Player/player_bullet.tscn" id="2_3yfsi"]
 [ext_resource type="Texture2D" uid="uid://cuqf24b1cint3" path="res://Player/Assets/player.png" id="2_afyjb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srmoj"]
+size = Vector2(40, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_peddq"]
 size = Vector2(40, 16)
 
 [node name="Player" type="CharacterBody2D"]
@@ -20,6 +23,8 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_afyjb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_srmoj")
 
 [node name="BulletSpawn" type="Marker2D" parent="."]
@@ -29,3 +34,12 @@ position = Vector2(0, -23)
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.5
+
+[node name="Hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_peddq")
+debug_color = Color(0.92607, 0.250785, 0.273463, 0.42)

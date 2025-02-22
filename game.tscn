@@ -42,7 +42,7 @@ color = Color(0, 0, 0, 1)
 [node name="StaticBody2D" type="StaticBody2D" parent="background"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/StaticBody2D"]
-position = Vector2(-33, 597)
+position = Vector2(-34, 597)
 shape = SubResource("RectangleShape2D_721uc")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/StaticBody2D"]
@@ -56,5 +56,12 @@ position = Vector2(566, 598)
 tile_set = SubResource("TileSet_coxtt")
 
 [node name="MoveEnemy" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="Enemies" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="EnemyShoot" type="Timer" parent="."]
 unique_name_in_owner = true
 autostart = true
