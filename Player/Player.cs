@@ -56,7 +56,7 @@ public partial class Player : CharacterBody2D
 	private void OnBodyEntered(Node2D body)
 	{
 		body.QueueFree();
-		GD.Print("Take damage");
+		SignalBus.Instance.EmitSignal(SignalBus.SignalName.PlayerHealthChange, 1);
 	}
 
 }

@@ -27,6 +27,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="SpaceInvaders"
 
+[gui]
+
+theme/custom_font="res://PixelifySans-VariableFont_wght.ttf"
+
 [input]
 
 ui_left={

@@ -12,6 +12,8 @@ public partial class SignalBus : Node
 	public delegate void EnemyChangeDirectionEventHandler();
 	[Signal]
 	public delegate void EnemyMoveEventHandler();
+	[Signal]
+	public delegate void ScoreUpdateEventHandler(int addScore);
 
 	public override void _Ready()
 	{

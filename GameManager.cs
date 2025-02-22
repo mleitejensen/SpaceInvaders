@@ -16,15 +16,28 @@ public partial class GameManager : Node2D
 	private bool isNotFirstMove = false;
 	private Node enemyGroup;
 	private Timer timerEnemyShoot;
+	private RichTextLabel textScore;
+	private int score = 0;
+	private int playerLives = 3;
+	private Sprite2D healthSprite1;
+	private Sprite2D healthSprite2;
+	private Sprite2D healthSprite3;
 	public override void _Ready()
 	{
 		timerMoveEnemy = GetNode<Timer>("%MoveEnemy");
 		tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
 		enemyGroup = GetNode<Node>("%Enemies");
 		timerEnemyShoot = GetNode<Timer>("%EnemyShoot");
+		textScore = GetNode<RichTextLabel>("%Score");
+		healthSprite1 = GetNode<Sprite2D>("%Heart1");
+		healthSprite2 = GetNode<Sprite2D>("%Heart2");
+		healthSprite3 = GetNode<Sprite2D>("%Heart3");
 
 		timerMoveEnemy.Timeout += OnTimerMoveEnemyTimeout;
 		timerEnemyShoot.Timeout += OnTimerEnemyShootTimeout;
+
+		SignalBus.Instance.Connect(SignalBus.SignalName.ScoreUpdate, Callable.From<int>(OnScoreUpdate));
+		SignalBus.Instance.Connect(SignalBus.SignalName.PlayerHealthChange, Callable.From<int>(OnHealthUpdate));
 
 		for (int index = 1; index < NumberOfEnemies; index++)
 		{
@@ -68,9 +81,43 @@ public partial class GameManager : Node2D
 	private void OnTimerEnemyShootTimeout()
 	{
 		var list = enemyGroup.GetChildren();
+		if (list.Count <= 0)
+		{
+			return;
+		}
 		int randomIndex = new Random().Next(0, list.Count);
 		Enemy enemy = (Enemy)enemyGroup.GetChildren()[randomIndex];
 		enemy.Shoot();
+	}
+
+	private void OnScoreUpdate(int addScore)
+	{
+		score += addScore;
+		textScore.Text = $"Score: {score}";
+	}
+
+	private void OnHealthUpdate(int damage)
+	{
+		playerLives -= damage;
+
+		switch (playerLives)
+		{
+			case 2:
+				healthSprite3.Visible = false;
+				break;
+			case 1:
+				healthSprite2.Visible = false;
+				break;
+			case 0:
+				healthSprite1.Visible = false;
+				break;
+			default:
+				healthSprite1.Visible = true;
+				healthSprite2.Visible = true;
+				healthSprite3.Visible = true;
+				break;
+		}
+
 	}
 
 }

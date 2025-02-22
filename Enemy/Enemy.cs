@@ -53,6 +53,7 @@ public partial class Enemy : CharacterBody2D
 
 	private void OnBodyEntered(Node2D body)
 	{
+		SignalBus.Instance.EmitSignal(SignalBus.SignalName.ScoreUpdate, 20);
 		body.QueueFree();
 		QueueFree();
 	}
