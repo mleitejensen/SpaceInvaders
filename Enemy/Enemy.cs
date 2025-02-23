@@ -11,8 +11,6 @@ public partial class Enemy : CharacterBody2D
 	public TileMapLayer tilemap;
 	private int speed = 64;
 	private bool movingRight = true;
-	private Area2D hitbox;
-
 	public override void _Ready()
 	{
 		SignalBus.Instance.Connect(SignalBus.SignalName.EnemyMove, Callable.From(OnMove));
@@ -20,10 +18,7 @@ public partial class Enemy : CharacterBody2D
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("%AnimatedSprite2D");
 		tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
-		hitbox = GetNode<Area2D>("%Hitbox");
 		bulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
-
-		hitbox.BodyEntered += OnBodyEntered;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -51,16 +46,15 @@ public partial class Enemy : CharacterBody2D
 		movingRight = !movingRight;
 	}
 
-	private void OnBodyEntered(Node2D body)
+	public void Die()
 	{
 		SignalBus.Instance.EmitSignal(SignalBus.SignalName.ScoreUpdate, 20);
-		body.QueueFree();
 		QueueFree();
+
 	}
 
 	public void Shoot()
 	{
-		GD.Print("Shot");
 		enemyBullet.Instantiate();
 		var bullet = enemyBullet.Instantiate<Node2D>();
 		bullet.GlobalPosition = bulletSpawnPoint.GlobalPosition;

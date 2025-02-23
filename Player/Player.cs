@@ -15,10 +15,8 @@ public partial class Player : CharacterBody2D
 	{
 		BulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
 		timer = GetNode<Timer>("%Timer");
-		hitbox = GetNode<Area2D>("%Hitbox");
 
 		timer.Timeout += OnTimerTimeout;
-		hitbox.BodyEntered += OnBodyEntered;
 	}
 
 	public override void _Process(double delta)
@@ -53,9 +51,8 @@ public partial class Player : CharacterBody2D
 		CanShoot = true;
 	}
 
-	private void OnBodyEntered(Node2D body)
+	public void TakeDamage()
 	{
-		body.QueueFree();
 		SignalBus.Instance.EmitSignal(SignalBus.SignalName.PlayerHealthChange, 1);
 	}
 

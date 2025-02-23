@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Bullet : CharacterBody2D
+public partial class Bullet : Area2D
 {
 	public float speed = 500;
 

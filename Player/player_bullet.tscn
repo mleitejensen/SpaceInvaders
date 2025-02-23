@@ -6,14 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2sv6"]
 size = Vector2(4, 8)
 
-[node name="Bullet" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 3
-motion_mode = 1
+[node name="Bullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 5
 script = ExtResource("1_87ugy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_h2sv6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -23,6 +19,10 @@ texture = ExtResource("2_8x3yn")
 scale = Vector2(2, 2)
 texture = ExtResource("2_8x3yn")
 flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h2sv6")
+debug_color = Color(0.943451, 0.202082, 0.330073, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
