@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://yxh7cyjn8xv0"]
+[gd_scene load_steps=9 format=3 uid="uid://yxh7cyjn8xv0"]
 
 [ext_resource type="PackedScene" uid="uid://bin43d456rvj0" path="res://Player/player.tscn" id="1_eeywv"]
 [ext_resource type="Script" path="res://GameManager.cs" id="1_warsr"]
 [ext_resource type="PackedScene" uid="uid://4vsqe5i4eay3" path="res://Enemy/enemy.tscn" id="2_qyane"]
 [ext_resource type="Texture2D" uid="uid://bnrhjihe4krjt" path="res://Player/Assets/heart.png" id="4_luyfn"]
 [ext_resource type="PackedScene" uid="uid://c0hoopgt7smes" path="res://Barrier/barrier.tscn" id="5_d83gd"]
+[ext_resource type="PackedScene" uid="uid://cvvx70f5qyw54" path="res://Barrier/new_barrier.tscn" id="6_pbg3f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721uc"]
 size = Vector2(66, 109)
@@ -129,3 +130,36 @@ position = Vector2(923, 516)
 
 [node name="Barrier7" parent="." instance=ExtResource("5_d83gd")]
 position = Vector2(1063, 525)
+
+[node name="Barrier8" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(446, 461)
+
+[node name="Barrier9" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(574, 458)
+
+[node name="Barrier10" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(741, 461)
+
+[node name="Barrier11" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(916, 460)
+
+[node name="Barrier12" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(831, 465)
+
+[node name="Barrier13" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(1010, 460)
+
+[node name="Barrier14" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(1113, 471)
+
+[node name="Barrier15" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(662, 458)
+
+[node name="Barrier16" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(342, 460)
+
+[node name="Barrier17" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(223, 458)
+
+[node name="Barrier18" parent="." instance=ExtResource("6_pbg3f")]
+position = Vector2(93, 460)

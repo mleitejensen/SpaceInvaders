@@ -4,6 +4,8 @@ using System;
 public partial class EnemyBullet : Bullet
 {
 	private Timer timer;
+	[Export]
+	private PackedScene explosion;
 
 	public override void _Ready()
 	{
@@ -20,6 +22,17 @@ public partial class EnemyBullet : Bullet
 		{
 			player.TakeDamage();
 		}
+
+		CallDeferred(nameof(HandleBodyEntered), body);
+
 		QueueFree();
+	}
+
+	private void HandleBodyEntered(Node2D body)
+	{
+		SetDeferred("monitoring", false);
+		var newExplosion = explosion.Instantiate<Node2D>();
+		newExplosion.GlobalPosition = this.GlobalPosition;
+		GetParent().AddChild(newExplosion);
 	}
 }

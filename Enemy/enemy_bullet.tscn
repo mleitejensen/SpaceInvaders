@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyb2ouoc186wr"]
+[gd_scene load_steps=5 format=3 uid="uid://cyb2ouoc186wr"]
 
 [ext_resource type="Script" path="res://Enemy/EnemyBullet.cs" id="1_5fhha"]
 [ext_resource type="Texture2D" uid="uid://cgrph2tu1k260" path="res://Player/Assets/bullet.png" id="1_j7qvo"]
+[ext_resource type="PackedScene" uid="uid://u3jexmbcjmg3" path="res://Enemy/explosion.tscn" id="2_5ub81"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mm7ca"]
 size = Vector2(4, 8)
@@ -10,6 +11,7 @@ size = Vector2(4, 8)
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_5fhha")
+explosion = ExtResource("2_5ub81")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
