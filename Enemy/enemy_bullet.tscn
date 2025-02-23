@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cgrph2tu1k260" path="res://Player/Assets/bullet.png" id="1_j7qvo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mm7ca"]
-size = Vector2(2, 2)
+size = Vector2(4, 8)
 
 [node name="EnemyBullet" type="CharacterBody2D"]
 collision_layer = 4
@@ -16,11 +16,8 @@ script = ExtResource("1_5fhha")
 shape = SubResource("RectangleShape2D_mm7ca")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("1_j7qvo")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-texture = ExtResource("1_j7qvo")
-flip_v = true
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

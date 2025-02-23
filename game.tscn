@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://yxh7cyjn8xv0"]
+[gd_scene load_steps=8 format=3 uid="uid://yxh7cyjn8xv0"]
 
 [ext_resource type="PackedScene" uid="uid://bin43d456rvj0" path="res://Player/player.tscn" id="1_eeywv"]
 [ext_resource type="Script" path="res://GameManager.cs" id="1_warsr"]
 [ext_resource type="PackedScene" uid="uid://4vsqe5i4eay3" path="res://Enemy/enemy.tscn" id="2_qyane"]
 [ext_resource type="Texture2D" uid="uid://bnrhjihe4krjt" path="res://Player/Assets/heart.png" id="4_luyfn"]
+[ext_resource type="PackedScene" uid="uid://c0hoopgt7smes" path="res://Barrier/barrier.tscn" id="5_d83gd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721uc"]
 size = Vector2(66, 109)
 
 [sub_resource type="TileSet" id="TileSet_coxtt"]
-tile_size = Vector2i(64, 64)
+tile_size = Vector2i(64, 50)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_warsr")
@@ -47,7 +48,7 @@ position = Vector2(-34, 597)
 shape = SubResource("RectangleShape2D_721uc")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="background/StaticBody2D"]
-position = Vector2(1185, 591)
+position = Vector2(1184, 591)
 shape = SubResource("RectangleShape2D_721uc")
 
 [node name="Player" parent="." instance=ExtResource("1_eeywv")]
@@ -73,8 +74,9 @@ autostart = true
 unique_name_in_owner = true
 offset_left = 10.0
 offset_top = 13.0
-offset_right = 278.0
-offset_bottom = 42.0
+offset_right = 286.0
+offset_bottom = 50.0
+theme_override_font_sizes/normal_font_size = 25
 text = "Score: 0"
 shortcut_keys_enabled = false
 deselect_on_focus_loss_enabled = false
@@ -106,3 +108,24 @@ unique_name_in_owner = true
 position = Vector2(96, 16)
 scale = Vector2(2, 2)
 texture = ExtResource("4_luyfn")
+
+[node name="Barrier" parent="." instance=ExtResource("5_d83gd")]
+position = Vector2(181, 528)
+
+[node name="Barrier2" parent="." instance=ExtResource("5_d83gd")]
+position = Vector2(330, 532)
+
+[node name="Barrier3" parent="." instance=ExtResource("5_d83gd")]
+position = Vector2(449, 516)
+
+[node name="Barrier4" parent="." instance=ExtResource("5_d83gd")]
+position = Vector2(581, 510)
+
+[node name="Barrier5" parent="." instance=ExtResource("5_d83gd")]
+position = Vector2(744, 521)
+
+[node name="Barrier6" parent="." instance=ExtResource("5_d83gd")]
+position = Vector2(923, 516)
+
+[node name="Barrier7" parent="." instance=ExtResource("5_d83gd")]
+position = Vector2(1063, 525)

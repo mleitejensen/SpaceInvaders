@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0hoopgt7smes"]
+
+[ext_resource type="Script" path="res://Barrier/Barrier.cs" id="1_nvaji"]
+[ext_resource type="Texture2D" uid="uid://c6ivkmkgas3ll" path="res://Barrier/barrier.png" id="1_wsgom"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jad7l"]
+
+[node name="Barrier" type="Area2D"]
+collision_mask = 7
+script = ExtResource("1_nvaji")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(2, 2)
+texture = ExtResource("1_wsgom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_jad7l")
+disabled = true
