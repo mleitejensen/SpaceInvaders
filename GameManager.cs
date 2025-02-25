@@ -44,7 +44,7 @@ public partial class GameManager : Node2D
 			for (int rowIndex = 1; rowIndex < NumberOfRows; rowIndex++)
 			{
 				var enemy = EnemyScene.Instantiate<CharacterBody2D>();
-				var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(64 * index, 64 * rowIndex)));
+				var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(64 * index, 50 * rowIndex)));
 				enemy.Position = targetPosition;
 				enemyGroup.AddChild(enemy);
 			}
@@ -81,6 +81,15 @@ public partial class GameManager : Node2D
 	private void OnTimerEnemyShootTimeout()
 	{
 		var list = enemyGroup.GetChildren();
+		if (list.Count <= 40)
+		{
+			timerMoveEnemy.WaitTime = 0.8;
+		}
+		else if (list.Count <= 20)
+		{
+			timerMoveEnemy.WaitTime = 0.5;
+		}
+
 		if (list.Count <= 0)
 		{
 			return;
@@ -110,11 +119,6 @@ public partial class GameManager : Node2D
 				break;
 			case 0:
 				healthSprite1.Visible = false;
-				break;
-			default:
-				healthSprite1.Visible = true;
-				healthSprite2.Visible = true;
-				healthSprite3.Visible = true;
 				break;
 		}
 

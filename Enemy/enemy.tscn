@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://4vsqe5i4eay3"]
+[gd_scene load_steps=7 format=3 uid="uid://4vsqe5i4eay3"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy.cs" id="1_v6rkq"]
 [ext_resource type="Texture2D" uid="uid://p8tok1ae2hdo" path="res://Enemy/Assets/alien1.png" id="2_6xhm5"]
@@ -27,9 +27,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nk8q2"]
-size = Vector2(40, 27)
-
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 motion_mode = 1
@@ -49,13 +46,3 @@ unique_name_in_owner = true
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tmkup")
 animation = &"second"
-
-[node name="Hitbox" type="Area2D" parent="."]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -3.5)
-shape = SubResource("RectangleShape2D_nk8q2")
-debug_color = Color(0.933413, 0.210905, 0.385315, 0.42)
