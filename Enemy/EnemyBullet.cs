@@ -23,16 +23,18 @@ public partial class EnemyBullet : Bullet
 			player.TakeDamage();
 		}
 
-		CallDeferred(nameof(HandleBodyEntered), body);
+		Vector2 collisionPosition = GlobalPosition;
+
+		CallDeferred(nameof(HandleBodyEntered), collisionPosition);
 
 		QueueFree();
 	}
 
-	private void HandleBodyEntered(Node2D body)
+	private void HandleBodyEntered(Vector2 collisionPosition)
 	{
 		SetDeferred("monitoring", false);
 		var newExplosion = explosion.Instantiate<Node2D>();
-		newExplosion.GlobalPosition = this.GlobalPosition;
+		newExplosion.GlobalPosition = collisionPosition;
 		GetParent().AddChild(newExplosion);
 	}
 }

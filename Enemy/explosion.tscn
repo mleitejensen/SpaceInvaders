@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://p8tok1ae2hdo" path="res://Enemy/Assets/alien1.png" id="2_qtj84"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u4330"]
+radius = 7.0
 
 [sub_resource type="Animation" id="Animation_gv7wr"]
 length = 0.001
