@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public partial class Explosion : Area2D
 {
-	private AnimationPlayer animationPlayer;
+	private CpuParticles2D cpuParticles2D;
 	public override void _Ready()
 	{
-		animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
+		cpuParticles2D = GetNode<CpuParticles2D>("%CPUParticles2D");
+		cpuParticles2D.Emitting = true;
 
 		this.BodyEntered += OnBodyEntered;
-		animationPlayer.AnimationFinished += OnAnimationFinished;
 	}
 
 	private void OnBodyEntered(Node2D body)

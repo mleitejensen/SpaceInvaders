@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cuqf24b1cint3" path="res://Player/Assets/player.png" id="2_afyjb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srmoj"]
-size = Vector2(40, 12)
+size = Vector2(20, 8)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -16,16 +16,14 @@ script = ExtResource("1_ovxkx")
 BulletScene = ExtResource("2_3yfsi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
 texture = ExtResource("2_afyjb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_srmoj")
 
 [node name="BulletSpawn" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -23)
+position = Vector2(0, -10)
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

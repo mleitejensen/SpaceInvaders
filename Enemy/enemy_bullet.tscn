@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://u3jexmbcjmg3" path="res://Enemy/explosion.tscn" id="2_5ub81"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mm7ca"]
-size = Vector2(4, 8)
+size = Vector2(2, 4)
 
 [node name="EnemyBullet" type="Area2D"]
 collision_layer = 0
@@ -14,11 +14,11 @@ script = ExtResource("1_5fhha")
 explosion = ExtResource("2_5ub81")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
 texture = ExtResource("1_j7qvo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mm7ca")
+debug_color = Color(0.956509, 0.181952, 0.271305, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

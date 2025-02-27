@@ -9,7 +9,6 @@ public partial class Enemy : CharacterBody2D
 	public AnimatedSprite2D animatedSprite2D;
 	public Timer timer;
 	public TileMapLayer tilemap;
-	private int speed = 64;
 	private bool movingRight = true;
 	public override void _Ready()
 	{
@@ -28,7 +27,7 @@ public partial class Enemy : CharacterBody2D
 
 	private void OnMove()
 	{
-		var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(GlobalPosition.X + (movingRight ? 64 : -64), GlobalPosition.Y)));
+		var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(GlobalPosition.X + (movingRight ? 32 : -32), GlobalPosition.Y)));
 		Position = targetPosition;
 
 		if (animatedSprite2D.Animation == "first")

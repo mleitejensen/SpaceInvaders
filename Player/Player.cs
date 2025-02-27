@@ -5,7 +5,7 @@ public partial class Player : CharacterBody2D
 {
 	[Export]
 	public PackedScene BulletScene;
-	public const float Speed = 300.0f;
+	public const float Speed = 200.0f;
 	private bool CanShoot = true;
 	private Timer timer;
 	private Marker2D BulletSpawnPoint;

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cf00jhnm67mtu" path="res://Enemy/Assets/alien2.png" id="3_vxvg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rivmd"]
-size = Vector2(39, 27)
+size = Vector2(20, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tmkup"]
 animations = [{
@@ -34,15 +34,14 @@ script = ExtResource("1_v6rkq")
 enemyBullet = ExtResource("2_bvd4d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_rivmd")
 
 [node name="BulletSpawn" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, 18)
+position = Vector2(0, 8)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tmkup")
 animation = &"second"

@@ -6,11 +6,11 @@ public partial class GameManager : Node2D
 	[Export]
 	public PackedScene EnemyScene;
 	[Export]
-	public int NumberOfEnemies = 11;
+	public int NumberOfEnemies = 5;
 	private TileMapLayer tilemap;
 	private Timer timerMoveEnemy;
 	private const int MaxNumberOfMoves = 6;
-	private const int NumberOfRows = 6;
+	private const int NumberOfRows = 0;
 	private int numberOfMoves = 0;
 	private bool MovingRight = true;
 	private bool isNotFirstMove = false;
@@ -39,12 +39,12 @@ public partial class GameManager : Node2D
 		SignalBus.Instance.Connect(SignalBus.SignalName.ScoreUpdate, Callable.From<int>(OnScoreUpdate));
 		SignalBus.Instance.Connect(SignalBus.SignalName.PlayerHealthChange, Callable.From<int>(OnHealthUpdate));
 
-		for (int index = 1; index < NumberOfEnemies; index++)
+		for (int index = -11; index < NumberOfEnemies; index++)
 		{
-			for (int rowIndex = 1; rowIndex < NumberOfRows; rowIndex++)
+			for (int rowIndex = -7; rowIndex < NumberOfRows; rowIndex++)
 			{
 				var enemy = EnemyScene.Instantiate<CharacterBody2D>();
-				var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(64 * index, 50 * rowIndex)));
+				var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(tilemap.TileSet.TileSize.X * index, tilemap.TileSet.TileSize.Y * rowIndex)));
 				enemy.Position = targetPosition;
 				enemyGroup.AddChild(enemy);
 			}
