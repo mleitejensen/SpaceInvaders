@@ -1,15 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://djcsoc0qe5inr"]
 
-[ext_resource type="Script" path="res://MainMenu.cs" id="1_clfkg"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a8uob"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(600, 15, 3.64)
-emission_shape = 2
-emission_sphere_radius = 1.0
-gravity = Vector3(0, 98, 0)
-scale_min = 2.0
-scale_max = 7.0
+[ext_resource type="Script" uid="uid://c1a551j6qggye" path="res://MainMenu.cs" id="1_clfkg"]
 
 [sub_resource type="Gradient" id="Gradient_iyq1d"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -19,6 +10,15 @@ gradient = SubResource("Gradient_iyq1d")
 width = 1
 height = 1
 fill_to = Vector2(0.623853, 0.655963)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a8uob"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(600, 15, 3.64)
+emission_shape = 2
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 98, 0)
+scale_min = 2.0
+scale_max = 7.0
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_gc2hy"]
 
@@ -64,12 +64,12 @@ text = "Spacers"
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(556, -113)
 amount = 60
-process_material = SubResource("ParticleProcessMaterial_a8uob")
 texture = SubResource("GradientTexture2D_da6ia")
 lifetime = 10.0
 preprocess = 20.0
 speed_scale = 3.0
 visibility_rect = Rect2(-800, 1, 1500, 1000)
+process_material = SubResource("ParticleProcessMaterial_a8uob")
 
 [node name="Play" type="Button" parent="."]
 unique_name_in_owner = true

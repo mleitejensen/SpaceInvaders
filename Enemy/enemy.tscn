@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://4vsqe5i4eay3"]
 
-[ext_resource type="Script" path="res://Enemy/Enemy.cs" id="1_v6rkq"]
+[ext_resource type="Script" uid="uid://b0bn72i60choa" path="res://Enemy/Enemy.cs" id="1_v6rkq"]
 [ext_resource type="Texture2D" uid="uid://p8tok1ae2hdo" path="res://Enemy/Assets/alien1.png" id="2_6xhm5"]
 [ext_resource type="PackedScene" uid="uid://cyb2ouoc186wr" path="res://Enemy/enemy_bullet.tscn" id="2_bvd4d"]
 [ext_resource type="Texture2D" uid="uid://cf00jhnm67mtu" path="res://Enemy/Assets/alien2.png" id="3_vxvg1"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://yxh7cyjn8xv0"]
 
 [ext_resource type="PackedScene" uid="uid://bin43d456rvj0" path="res://Player/player.tscn" id="1_eeywv"]
-[ext_resource type="Script" path="res://GameManager.cs" id="1_warsr"]
+[ext_resource type="Script" uid="uid://blylbhabthl7k" path="res://GameManager.cs" id="1_warsr"]
 [ext_resource type="PackedScene" uid="uid://4vsqe5i4eay3" path="res://Enemy/enemy.tscn" id="2_qyane"]
 [ext_resource type="Texture2D" uid="uid://bnrhjihe4krjt" path="res://Player/Assets/heart.png" id="4_luyfn"]
 [ext_resource type="PackedScene" uid="uid://cvvx70f5qyw54" path="res://Barrier/barrier.tscn" id="6_pbg3f"]
