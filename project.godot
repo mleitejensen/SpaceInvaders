@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="SpaceInvaders"
-run/main_scene="res://game.tscn"
+run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://Global/SignalBus.cs"
+SignalBus="*res://Autoloads/SignalBus.cs"
 
 [display]
 
@@ -29,7 +29,7 @@ project/assembly_name="SpaceInvaders"
 
 [gui]
 
-theme/custom_font="res://PixelifySans-VariableFont_wght.ttf"
+theme/custom_font="res://UI/PixelifySans-VariableFont_wght.ttf"
 
 [input]
 

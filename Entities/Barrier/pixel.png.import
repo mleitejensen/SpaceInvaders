@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p8tok1ae2hdo"
-path="res://.godot/imported/alien1.png-9464e03cb77b278385a84b4cfe3bb88b.ctex"
+uid="uid://n8kogn3i28x5"
+path="res://.godot/imported/pixel.png-0ce3c3b08642faf741b7c358015ee136.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/Assets/alien1.png"
-dest_files=["res://.godot/imported/alien1.png-9464e03cb77b278385a84b4cfe3bb88b.ctex"]
+source_file="res://Entities/Barrier/pixel.png"
+dest_files=["res://.godot/imported/pixel.png-0ce3c3b08642faf741b7c358015ee136.ctex"]
 
 [params]
 

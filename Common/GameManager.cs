@@ -67,12 +67,12 @@ public partial class GameManager : Node2D
 		if (MovingRight)
 		{
 			numberOfMoves++;
-			SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemyMove);
+			//SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemyMove);
 		}
 		else
 		{
 			numberOfMoves--;
-			SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemyMove);
+			//SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemyMove);
 		}
 
 		isNotFirstMove = true;

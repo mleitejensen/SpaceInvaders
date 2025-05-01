@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgrph2tu1k260"
-path="res://.godot/imported/bullet.png-b6d46c98343e84969a817345b22c0e85.ctex"
+uid="uid://p8tok1ae2hdo"
+path="res://.godot/imported/alien1.png-71ea34b6c1d2b11cb734aeddbefa0c9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Assets/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-b6d46c98343e84969a817345b22c0e85.ctex"]
+source_file="res://Entities/Enemy/Assets/alien1.png"
+dest_files=["res://.godot/imported/alien1.png-71ea34b6c1d2b11cb734aeddbefa0c9f.ctex"]
 
 [params]
 

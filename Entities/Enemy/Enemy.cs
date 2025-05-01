@@ -22,7 +22,7 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-
+		Position = new Vector2(Position.X + 1, Position.Y);
 	}
 
 	private void OnMove()

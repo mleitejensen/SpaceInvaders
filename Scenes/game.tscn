@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://yxh7cyjn8xv0"]
 
-[ext_resource type="PackedScene" uid="uid://bin43d456rvj0" path="res://Player/player.tscn" id="1_eeywv"]
-[ext_resource type="Script" uid="uid://blylbhabthl7k" path="res://GameManager.cs" id="1_warsr"]
-[ext_resource type="PackedScene" uid="uid://4vsqe5i4eay3" path="res://Enemy/enemy.tscn" id="2_qyane"]
-[ext_resource type="Texture2D" uid="uid://bnrhjihe4krjt" path="res://Player/Assets/heart.png" id="4_luyfn"]
-[ext_resource type="PackedScene" uid="uid://cvvx70f5qyw54" path="res://Barrier/barrier.tscn" id="6_pbg3f"]
+[ext_resource type="Script" uid="uid://blylbhabthl7k" path="res://Common/GameManager.cs" id="1_wowpa"]
+[ext_resource type="PackedScene" uid="uid://4vsqe5i4eay3" path="res://Entities/Enemy/enemy.tscn" id="2_i6g32"]
+[ext_resource type="Texture2D" uid="uid://bnrhjihe4krjt" path="res://Entities/Player/Assets/heart.png" id="3_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://cvvx70f5qyw54" path="res://Entities/Barrier/barrier.tscn" id="4_v158k"]
+[ext_resource type="PackedScene" uid="uid://bin43d456rvj0" path="res://Entities/Player/player.tscn" id="5_h4fw4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721uc"]
 size = Vector2(66, 109)
@@ -13,8 +13,8 @@ size = Vector2(66, 109)
 tile_size = Vector2i(32, 25)
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_warsr")
-EnemyScene = ExtResource("2_qyane")
+script = ExtResource("1_wowpa")
+EnemyScene = ExtResource("2_i6g32")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -45,19 +45,19 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 position = Vector2(32, 16)
 scale = Vector2(2, 2)
-texture = ExtResource("4_luyfn")
+texture = ExtResource("3_1l0tm")
 
 [node name="Heart2" type="Sprite2D" parent="CanvasLayer/HBoxContainer"]
 unique_name_in_owner = true
 position = Vector2(64, 16)
 scale = Vector2(2, 2)
-texture = ExtResource("4_luyfn")
+texture = ExtResource("3_1l0tm")
 
 [node name="Heart3" type="Sprite2D" parent="CanvasLayer/HBoxContainer"]
 unique_name_in_owner = true
 position = Vector2(96, 16)
 scale = Vector2(2, 2)
-texture = ExtResource("4_luyfn")
+texture = ExtResource("3_1l0tm")
 
 [node name="background" type="Control" parent="."]
 z_index = -1
@@ -99,25 +99,25 @@ shape = SubResource("RectangleShape2D_721uc")
 
 [node name="Barriers" type="Node" parent="."]
 
-[node name="Barrier1" parent="Barriers" instance=ExtResource("6_pbg3f")]
+[node name="Barrier1" parent="Barriers" instance=ExtResource("4_v158k")]
 position = Vector2(-289, 130)
 
-[node name="Barrier2" parent="Barriers" instance=ExtResource("6_pbg3f")]
+[node name="Barrier2" parent="Barriers" instance=ExtResource("4_v158k")]
 position = Vector2(-152, 130)
 
-[node name="Barrier3" parent="Barriers" instance=ExtResource("6_pbg3f")]
+[node name="Barrier3" parent="Barriers" instance=ExtResource("4_v158k")]
 position = Vector2(0, 130)
 
-[node name="Barrier4" parent="Barriers" instance=ExtResource("6_pbg3f")]
+[node name="Barrier4" parent="Barriers" instance=ExtResource("4_v158k")]
 position = Vector2(147, 130)
 
-[node name="Barrier5" parent="Barriers" instance=ExtResource("6_pbg3f")]
+[node name="Barrier5" parent="Barriers" instance=ExtResource("4_v158k")]
 position = Vector2(286, 130)
 
 [node name="Enemies" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="Player" parent="." instance=ExtResource("1_eeywv")]
+[node name="Player" parent="." instance=ExtResource("5_h4fw4")]
 position = Vector2(0, 179)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
