@@ -1,30 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://bin43d456rvj0"]
+[gd_scene load_steps=5 format=3 uid="uid://dsbshpqefk1el"]
 
-[ext_resource type="Script" uid="uid://d1tujsyvhe25r" path="res://Entities/Player/Player.cs" id="1_ovxkx"]
-[ext_resource type="PackedScene" uid="uid://hngeqnx6ohpy" path="res://Entities/Player/player_bullet.tscn" id="2_3yfsi"]
-[ext_resource type="Texture2D" uid="uid://cuqf24b1cint3" path="res://Entities/Player/Assets/player.png" id="2_afyjb"]
+[ext_resource type="Script" uid="uid://ckrd5jo6dtb04" path="res://Entities/Player/Player.cs" id="1_ovxkx"]
+[ext_resource type="PackedScene" uid="uid://k0hums465oud" path="res://Entities/PlayerBullet/player_bullet.tscn" id="2_3uyv8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_srmoj"]
-size = Vector2(20, 8)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv1ah"]
+albedo_color = Color(0.0942266, 0.201619, 0.329837, 1)
 
-[node name="Player" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 3
-motion_mode = 1
-slide_on_ceiling = false
+[sub_resource type="BoxShape3D" id="BoxShape3D_ix6vc"]
+
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ovxkx")
-BulletScene = ExtResource("2_3yfsi")
+PlayerBulletScene = ExtResource("2_3uyv8")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_afyjb")
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_mv1ah")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_srmoj")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_ix6vc")
 
-[node name="BulletSpawn" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, -10)
-
-[node name="Timer" type="Timer" parent="."]
+[node name="ShootCooldown" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.5

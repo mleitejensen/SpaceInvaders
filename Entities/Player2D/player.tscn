@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bin43d456rvj0"]
+
+[ext_resource type="Script" uid="uid://d1tujsyvhe25r" path="res://Entities/Player2D/Player.cs" id="1_ovxkx"]
+[ext_resource type="PackedScene" uid="uid://hngeqnx6ohpy" path="res://Entities/Player2D/player_bullet.tscn" id="2_3yfsi"]
+[ext_resource type="Texture2D" uid="uid://cuqf24b1cint3" path="res://Entities/Player2D/Assets/player.png" id="2_afyjb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srmoj"]
+size = Vector2(20, 8)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+slide_on_ceiling = false
+script = ExtResource("1_ovxkx")
+BulletScene = ExtResource("2_3yfsi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_afyjb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_srmoj")
+
+[node name="BulletSpawn" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5

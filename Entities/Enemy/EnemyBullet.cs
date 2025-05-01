@@ -18,7 +18,7 @@ public partial class EnemyBullet : Bullet
 
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body is Player player)
+		if (body is Player2D player)
 		{
 			player.TakeDamage();
 		}

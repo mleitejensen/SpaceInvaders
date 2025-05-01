@@ -95,7 +95,7 @@ public partial class GameManager : Node2D
 			return;
 		}
 		int randomIndex = new Random().Next(0, list.Count);
-		Enemy enemy = (Enemy)enemyGroup.GetChildren()[randomIndex];
+		Enemy2D enemy = (Enemy2D)enemyGroup.GetChildren()[randomIndex];
 		enemy.Shoot();
 	}
 

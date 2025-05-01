@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerBullet : Bullet
+public partial class PlayerBullet2D : Bullet
 {
 	private Timer timer;
 
@@ -16,7 +16,7 @@ public partial class PlayerBullet : Bullet
 
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body is Enemy enemy)
+		if (body is Enemy2D enemy)
 		{
 			enemy.Die();
 		}
