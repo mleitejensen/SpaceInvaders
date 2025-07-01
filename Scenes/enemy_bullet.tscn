@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cyb2ouoc186wr"]
 
-[ext_resource type="Script" uid="uid://umaqfqq8v73n" path="res://Entities/Enemy/EnemyBullet.cs" id="1_5fhha"]
-[ext_resource type="Texture2D" uid="uid://cgrph2tu1k260" path="res://Entities/Player/Assets/bullet.png" id="1_j7qvo"]
-[ext_resource type="PackedScene" uid="uid://u3jexmbcjmg3" path="res://Entities/Enemy/explosion.tscn" id="2_5ub81"]
+[ext_resource type="Script" uid="uid://umaqfqq8v73n" path="res://Scripts/EnemyBullet.cs" id="1_5fhha"]
+[ext_resource type="Texture2D" uid="uid://cgrph2tu1k260" path="res://Assets/bullet.png" id="1_j7qvo"]
+[ext_resource type="PackedScene" uid="uid://u3jexmbcjmg3" path="res://Scenes/explosion.tscn" id="2_5ub81"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mm7ca"]
 size = Vector2(2, 4)

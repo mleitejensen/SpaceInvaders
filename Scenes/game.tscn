@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://j3qpxi4il5dk"]
 
-[ext_resource type="Script" uid="uid://blylbhabthl7k" path="res://Common/GameManager.cs" id="1_wowpa"]
-[ext_resource type="PackedScene" uid="uid://4vsqe5i4eay3" path="res://Entities/Enemy/enemy.tscn" id="2_i6g32"]
-[ext_resource type="Texture2D" uid="uid://bnrhjihe4krjt" path="res://Entities/Player/Assets/heart.png" id="3_1l0tm"]
-[ext_resource type="PackedScene" uid="uid://cvvx70f5qyw54" path="res://Entities/Barrier/barrier.tscn" id="4_v158k"]
-[ext_resource type="PackedScene" uid="uid://dsbshpqefk1el" path="res://Entities/Player/player.tscn" id="5_h4fw4"]
+[ext_resource type="Script" uid="uid://blylbhabthl7k" path="res://Scripts/GameManager.cs" id="1_wowpa"]
+[ext_resource type="PackedScene" uid="uid://4vsqe5i4eay3" path="res://Scenes/enemy.tscn" id="2_i6g32"]
+[ext_resource type="Texture2D" uid="uid://bnrhjihe4krjt" path="res://Assets/heart.png" id="3_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://cvvx70f5qyw54" path="res://Scenes/barrier.tscn" id="4_v158k"]
+[ext_resource type="PackedScene" uid="uid://dsbshpqefk1el" path="res://Scenes/player.tscn" id="5_h4fw4"]
 [ext_resource type="Script" uid="uid://c3bge8nnc6sws" path="res://Scripts/EnemyAreaEnd.cs" id="6_i6g32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721uc"]

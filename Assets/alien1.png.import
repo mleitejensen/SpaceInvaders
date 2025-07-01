@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnrhjihe4krjt"
-path="res://.godot/imported/heart.png-ce8cab1f258931d3a43d1c6632de22b1.ctex"
+uid="uid://p8tok1ae2hdo"
+path="res://.godot/imported/alien1.png-9c28ed3ee1bc819a70fb7e6ce6a70e32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Player/Assets/heart.png"
-dest_files=["res://.godot/imported/heart.png-ce8cab1f258931d3a43d1c6632de22b1.ctex"]
+source_file="res://Assets/alien1.png"
+dest_files=["res://.godot/imported/alien1.png-9c28ed3ee1bc819a70fb7e6ce6a70e32.ctex"]
 
 [params]
 
