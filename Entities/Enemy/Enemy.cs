@@ -10,9 +10,13 @@ public partial class Enemy : CharacterBody2D
 	public Timer timer;
 	public TileMapLayer tilemap;
 	private bool movingRight = true;
+	private float baseMovementSpeed = 1;
+	private float movementSpeed;
 	public override void _Ready()
 	{
-		SignalBus.Instance.Connect(SignalBus.SignalName.EnemyMove, Callable.From(OnMove));
+		movementSpeed = baseMovementSpeed;
+
+		SignalBus.Instance.Connect(SignalBus.SignalName.EnemySpeedChange, Callable.From<int>(OnSpeedChange));
 		SignalBus.Instance.Connect(SignalBus.SignalName.EnemyChangeDirection, Callable.From(OnChangeDirection));
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("%AnimatedSprite2D");
@@ -22,27 +26,17 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Position = new Vector2(Position.X + 1, Position.Y);
-	}
-
-	private void OnMove()
-	{
-		var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(GlobalPosition.X + (movingRight ? 32 : -32), GlobalPosition.Y)));
-		Position = targetPosition;
-
-		if (animatedSprite2D.Animation == "first")
-		{
-			animatedSprite2D.Play("second");
-		}
-		else
-		{
-			animatedSprite2D.Play("first");
-		}
+		Position = new Vector2(Position.X + (movingRight ? movementSpeed : -movementSpeed), Position.Y);
 	}
 
 	private void OnChangeDirection()
 	{
 		movingRight = !movingRight;
+	}
+
+	private void OnSpeedChange(int multiplySpeedBy)
+	{
+		movementSpeed = baseMovementSpeed * multiplySpeedBy;
 	}
 
 	public void Die()

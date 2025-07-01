@@ -4,7 +4,7 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	[Export]
-	public PackedScene BulletScene;
+	public PackedScene bulletScene;
 	public const float Speed = 200.0f;
 	private bool CanShoot = true;
 	private Timer timer;
@@ -39,8 +39,13 @@ public partial class Player : CharacterBody2D
 
 	public void Shoot()
 	{
+		if (bulletScene == null)
+		{
+			GD.PrintErr("BulletScene is not assigned in the inspector!");
+			return;
+		}
 		CanShoot = false;
-		var bullet = BulletScene.Instantiate<Node2D>();
+		var bullet = bulletScene.Instantiate<Node2D>();
 		bullet.GlobalPosition = BulletSpawnPoint.GlobalPosition;
 		GetNode("/root/Game").AddChild(bullet);
 		timer.Start();

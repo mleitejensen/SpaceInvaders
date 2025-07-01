@@ -8,8 +8,6 @@ public partial class GameManager : Node2D
 	[Export]
 	public int NumberOfEnemies = 5;
 	private TileMapLayer tilemap;
-	private Timer timerMoveEnemy;
-	private const int MaxNumberOfMoves = 6;
 	private const int NumberOfRows = 0;
 	private int numberOfMoves = 0;
 	private bool MovingRight = true;
@@ -24,17 +22,13 @@ public partial class GameManager : Node2D
 	private Sprite2D healthSprite3;
 	public override void _Ready()
 	{
-		timerMoveEnemy = GetNode<Timer>("%MoveEnemy");
 		tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
 		enemyGroup = GetNode<Node>("%Enemies");
-		timerEnemyShoot = GetNode<Timer>("%EnemyShoot");
 		textScore = GetNode<RichTextLabel>("%Score");
 		healthSprite1 = GetNode<Sprite2D>("%Heart1");
 		healthSprite2 = GetNode<Sprite2D>("%Heart2");
 		healthSprite3 = GetNode<Sprite2D>("%Heart3");
 
-		timerMoveEnemy.Timeout += OnTimerMoveEnemyTimeout;
-		timerEnemyShoot.Timeout += OnTimerEnemyShootTimeout;
 
 		SignalBus.Instance.Connect(SignalBus.SignalName.ScoreUpdate, Callable.From<int>(OnScoreUpdate));
 		SignalBus.Instance.Connect(SignalBus.SignalName.PlayerHealthChange, Callable.From<int>(OnHealthUpdate));
@@ -53,42 +47,11 @@ public partial class GameManager : Node2D
 
 	public override void _Process(double delta)
 	{
-
-	}
-	private void OnTimerMoveEnemyTimeout()
-	{
-		if (numberOfMoves >= MaxNumberOfMoves || (numberOfMoves <= 0 && isNotFirstMove))
-		{
-			MovingRight = !MovingRight;
-			SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemyChangeDirection);
-		}
-
-
-		if (MovingRight)
-		{
-			numberOfMoves++;
-			//SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemyMove);
-		}
-		else
-		{
-			numberOfMoves--;
-			//SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemyMove);
-		}
-
-		isNotFirstMove = true;
 	}
 
 	private void OnTimerEnemyShootTimeout()
 	{
 		var list = enemyGroup.GetChildren();
-		if (list.Count <= 40)
-		{
-			timerMoveEnemy.WaitTime = 0.8;
-		}
-		else if (list.Count <= 20)
-		{
-			timerMoveEnemy.WaitTime = 0.5;
-		}
 
 		if (list.Count <= 0)
 		{
@@ -103,6 +66,18 @@ public partial class GameManager : Node2D
 	{
 		score += addScore;
 		textScore.Text = $"Score: {score}";
+
+		var list = enemyGroup.GetChildren();
+		if (list.Count <= 40)
+		{
+			GD.Print("40 enemies left, multiplying by 4");
+			SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemySpeedChange, 4);
+		}
+		else if (list.Count <= 80)
+		{
+			GD.Print("80 enemies left, multiplying by 2");
+			SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemySpeedChange, 2);
+		}
 	}
 
 	private void OnHealthUpdate(int damage)
