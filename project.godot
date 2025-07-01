@@ -27,6 +27,12 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="SpaceInvaders"
 
+[file_customization]
+
+folder_colors={
+"res://Entities/": "green"
+}
+
 [gui]
 
 theme/custom_font="res://UI/PixelifySans-VariableFont_wght.ttf"

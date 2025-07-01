@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjciqau855x3x" path="res://Entities/Enemy/Enemy.cs" id="1_v6rkq"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brg4x"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egd74"]
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_egd74"]
@@ -12,7 +12,7 @@ script = ExtResource("1_v6rkq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-material_override = SubResource("StandardMaterial3D_brg4x")
+material = SubResource("StandardMaterial3D_egd74")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

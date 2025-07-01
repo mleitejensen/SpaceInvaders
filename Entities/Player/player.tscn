@@ -1,10 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsbshpqefk1el"]
+[gd_scene load_steps=7 format=3 uid="uid://dsbshpqefk1el"]
 
 [ext_resource type="Script" uid="uid://ckrd5jo6dtb04" path="res://Entities/Player/Player.cs" id="1_ovxkx"]
 [ext_resource type="PackedScene" uid="uid://k0hums465oud" path="res://Entities/PlayerBullet/player_bullet.tscn" id="2_3uyv8"]
+[ext_resource type="Shader" uid="uid://ct4cdy5oq8g7e" path="res://Common/Shaders/outline.gdshader" id="3_lu8i8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tekja"]
+render_priority = 0
+shader = ExtResource("3_lu8i8")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv1ah"]
-albedo_color = Color(0.0942266, 0.201619, 0.329837, 1)
+next_pass = SubResource("ShaderMaterial_tekja")
+albedo_color = Color(0, 0.968627, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ix6vc"]
 
