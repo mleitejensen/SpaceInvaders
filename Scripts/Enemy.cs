@@ -10,8 +10,9 @@ public partial class Enemy : CharacterBody2D
 	public Timer timer;
 	public TileMapLayer tilemap;
 	private bool movingRight = true;
-	private float baseMovementSpeed = 1;
+	private float baseMovementSpeed = 10;
 	private float movementSpeed;
+	private int touchedCorner = 0;
 	public override void _Ready()
 	{
 		movementSpeed = baseMovementSpeed;
@@ -24,19 +25,31 @@ public partial class Enemy : CharacterBody2D
 		bulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
 	}
 
-	public override void _PhysicsProcess(double delta)
+	public override void _Process(double delta)
 	{
-		Position = new Vector2(Position.X + (movingRight ? movementSpeed : -movementSpeed), Position.Y);
+		Velocity = new Vector2(baseMovementSpeed, 0) * (movingRight ? movementSpeed : -movementSpeed);
+
+		MoveAndSlide();
 	}
 
 	private void OnChangeDirection()
 	{
 		movingRight = !movingRight;
+		touchedCorner++;
+		if (touchedCorner >= 2)
+		{
+			MoveDown();
+		}
 	}
 
 	private void OnSpeedChange(int multiplySpeedBy)
 	{
 		movementSpeed = baseMovementSpeed * multiplySpeedBy;
+	}
+
+	private void MoveDown()
+	{
+
 	}
 
 	public void Die()
