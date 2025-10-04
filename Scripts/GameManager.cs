@@ -1,19 +1,19 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class GameManager : Node2D
 {
+	[Export]
+	public EnemyManager EnemyManager { get; set; }
 	[Export]
 	public PackedScene EnemyScene;
 	[Export]
 	public int NumberOfEnemies = 5;
 	private TileMapLayer tilemap;
 	private const int NumberOfRows = 0;
-	private int numberOfMoves = 0;
-	private bool MovingRight = true;
-	private bool isNotFirstMove = false;
 	private Node enemyGroup;
-	private Timer timerEnemyShoot;
 	private RichTextLabel textScore;
 	private int score = 0;
 	private int playerLives = 3;
@@ -43,23 +43,12 @@ public partial class GameManager : Node2D
 				enemyGroup.AddChild(enemy);
 			}
 		}
+
 	}
 
 	public override void _Process(double delta)
 	{
-	}
 
-	private void OnTimerEnemyShootTimeout()
-	{
-		var list = enemyGroup.GetChildren();
-
-		if (list.Count <= 0)
-		{
-			return;
-		}
-		int randomIndex = new Random().Next(0, list.Count);
-		Enemy enemy = (Enemy)enemyGroup.GetChildren()[randomIndex];
-		enemy.Shoot();
 	}
 
 	private void OnScoreUpdate(int addScore)
@@ -67,7 +56,7 @@ public partial class GameManager : Node2D
 		score += addScore;
 		textScore.Text = $"Score: {score}";
 
-		var list = enemyGroup.GetChildren();
+		var list = enemyGroup.GetChildren().ToList();
 		if (list.Count <= 40)
 		{
 			GD.Print("40 enemies left, multiplying by 4");
