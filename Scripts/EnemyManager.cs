@@ -26,18 +26,29 @@ public partial class EnemyManager : Node
 	private void OnEnemyShoot()
 	{
 		var enemy = GetLowestEnemies();
+		if (enemy == null)
+		{
+			return;
+		}
+
 		enemy.Shoot();
 	}
 
 	private Enemy GetLowestEnemies()
 	{
 		var list = enemyGroupNode.GetChildren().ToList();
+
+		if (list.Count == 0)
+		{
+			return null;
+		}
+
 		Enemies = GetEnemies(list);
 
-		// if (Enemies is null)
-		// {
-		// 	return;
-		// }
+		if (Enemies is null)
+		{
+			return null;
+		}
 
 
 		List<Enemy> canShoot = new();
@@ -75,8 +86,6 @@ public partial class EnemyManager : Node
 			}
 		}
 
-		GD.Print(canShoot.First());
-
 		foreach (var e in canShoot)
 		{
 			e.Modulate = new Color(1, 0.1f, 0.07f);
@@ -84,11 +93,10 @@ public partial class EnemyManager : Node
 
 		Random random = new();
 		return canShoot[random.Next(canShoot.Count - 1)];
-
 	}
 
 
-	public List<Enemy> GetEnemies(List<Node> list)
+	private List<Enemy> GetEnemies(List<Node> list)
 	{
 		List<Enemy> enemies = new();
 
