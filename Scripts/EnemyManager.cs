@@ -33,7 +33,7 @@ public partial class EnemyManager : Node
 		enemy.Shoot();
 	}
 
-	private void AddNewTimer()
+	public void AddNewTimer()
 	{
 		Timer timer = new();
 		timer.Timeout += OnEnemyShoot;

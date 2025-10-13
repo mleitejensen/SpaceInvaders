@@ -10,7 +10,7 @@ public partial class EnemyBullet : Bullet
 	public override void _Ready()
 	{
 		BodyEntered += OnBodyEntered;
-		Speed = -500;
+		Speed = -300;
 
 		_timer = GetNode<Timer>("%Timer");
 		_timer.Timeout += OnTimerTimeout;

@@ -20,6 +20,8 @@ public partial class GameManager : Node2D
 	private Sprite2D _healthSprite1;
 	private Sprite2D _healthSprite2;
 	private Sprite2D _healthSprite3;
+	private bool _checkOne = false;
+	private bool _checkTwo = false;
 	public override void _Ready()
 	{
 		_tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
@@ -57,15 +59,20 @@ public partial class GameManager : Node2D
 		_textScore.Text = $"Score: {_score}";
 
 		var list = _enemyGroup.GetChildren().ToList();
-		if (list.Count <= 40)
+		if (list.Count <= 40 && _checkOne == false)
 		{
-			GD.Print("40 enemies left, multiplying by 4");
-			SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemySpeedChange, 4);
+			_checkOne = true;
+			EnemyManager.AddNewTimer();
+			GD.Print("40 enemies left, multiplying by 2.5");
+			SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemySpeedChange, 2.5);
 		}
-		else if (list.Count <= 80)
+		else if (list.Count <= 80 && _checkTwo == false)
 		{
-			GD.Print("80 enemies left, multiplying by 2");
-			SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemySpeedChange, 2);
+			_checkTwo = true;
+			EnemyManager.AddNewTimer();
+
+			GD.Print("80 enemies left, multiplying by 1.75");
+			SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemySpeedChange, 1.75);
 		}
 	}
 

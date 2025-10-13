@@ -8,7 +8,7 @@ public partial class PlayerBullet : Bullet
 	public override void _Ready()
 	{
 		BodyEntered += OnBodyEntered;
-		Speed = 500;
+		Speed = 400;
 
 		_timer = GetNode<Timer>("%Timer");
 		_timer.Timeout += OnTimerTimeout;
