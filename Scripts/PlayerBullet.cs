@@ -3,15 +3,15 @@ using System;
 
 public partial class PlayerBullet : Bullet
 {
-	private Timer timer;
+	private Timer _timer;
 
 	public override void _Ready()
 	{
-		this.BodyEntered += OnBodyEntered;
-		speed = 500;
+		BodyEntered += OnBodyEntered;
+		Speed = 500;
 
-		timer = GetNode<Timer>("%Timer");
-		timer.Timeout += OnTimerTimeout;
+		_timer = GetNode<Timer>("%Timer");
+		_timer.Timeout += OnTimerTimeout;
 	}
 
 	private void OnBodyEntered(Node2D body)

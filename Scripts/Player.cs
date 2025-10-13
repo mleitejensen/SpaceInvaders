@@ -4,24 +4,24 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	[Export]
-	public PackedScene bulletScene;
+	public PackedScene BulletScene;
 	public const float Speed = 200.0f;
-	private bool CanShoot = true;
-	private Timer timer;
-	private Marker2D BulletSpawnPoint;
-	private Area2D hitbox;
+	private bool _canShoot = true;
+	private Timer _timer;
+	private Marker2D _bulletSpawnPoint;
+	private Area2D _hitbox;
 
 	public override void _Ready()
 	{
-		BulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
-		timer = GetNode<Timer>("%Timer");
+		_bulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
+		_timer = GetNode<Timer>("%Timer");
 
-		timer.Timeout += OnTimerTimeout;
+		_timer.Timeout += OnTimerTimeout;
 	}
 
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionPressed("ui_accept") && CanShoot)
+		if (Input.IsActionPressed("ui_accept") && _canShoot)
 		{
 			Shoot();
 		}
@@ -39,21 +39,21 @@ public partial class Player : CharacterBody2D
 
 	public void Shoot()
 	{
-		if (bulletScene == null)
+		if (BulletScene == null)
 		{
 			GD.PrintErr("BulletScene is not assigned in the inspector!");
 			return;
 		}
-		CanShoot = false;
-		var bullet = bulletScene.Instantiate<Node2D>();
-		bullet.GlobalPosition = BulletSpawnPoint.GlobalPosition;
+		_canShoot = false;
+		var bullet = BulletScene.Instantiate<Node2D>();
+		bullet.GlobalPosition = _bulletSpawnPoint.GlobalPosition;
 		GetNode("/root/Game").AddChild(bullet);
-		timer.Start();
+		_timer.Start();
 	}
 
 	private void OnTimerTimeout()
 	{
-		CanShoot = true;
+		_canShoot = true;
 	}
 
 	public void TakeDamage()

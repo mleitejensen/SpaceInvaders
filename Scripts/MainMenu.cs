@@ -3,15 +3,15 @@ using System;
 
 public partial class MainMenu : Control
 {
-	private Button playButton;
-	private Button quitButton;
+	private Button _playButton;
+	private Button _quitButton;
 	public override void _Ready()
 	{
-		playButton = GetNode<Button>("%Play");
-		quitButton = GetNode<Button>("%Quit");
+		_playButton = GetNode<Button>("%Play");
+		_quitButton = GetNode<Button>("%Quit");
 
-		playButton.ButtonUp += OnPlayButtonClicked;
-		quitButton.ButtonUp += OnQuitButtonClicked;
+		_playButton.ButtonUp += OnPlayButtonClicked;
+		_quitButton.ButtonUp += OnQuitButtonClicked;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

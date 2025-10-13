@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public partial class Explosion : Area2D
 {
-	private CpuParticles2D cpuParticles2D;
+	private CpuParticles2D _cpuParticles2D;
 	public override void _Ready()
 	{
-		cpuParticles2D = GetNode<CpuParticles2D>("%CPUParticles2D");
-		cpuParticles2D.Emitting = true;
+		_cpuParticles2D = GetNode<CpuParticles2D>("%CPUParticles2D");
+		_cpuParticles2D.Emitting = true;
 
-		this.BodyEntered += OnBodyEntered;
+		BodyEntered += OnBodyEntered;
 	}
 
 	private void OnBodyEntered(Node2D body)
@@ -26,7 +26,7 @@ public partial class Explosion : Area2D
 		}
 	}
 
-	private void OnAnimationFinished(StringName anim_name)
+	private void OnAnimationFinished(StringName animName)
 	{
 		QueueFree();
 	}
@@ -36,8 +36,8 @@ public partial class Explosion : Area2D
 		List<Vector2I> cells = new List<Vector2I>();
 
 		// Step 1: Get the global position and radius of the circle
-		Vector2 circleGlobalPosition = this.GlobalPosition;
-		float circleRadius = ((CircleShape2D)this.GetChild<CollisionShape2D>(0).Shape).Radius;
+		Vector2 circleGlobalPosition = GlobalPosition;
+		float circleRadius = ((CircleShape2D)GetChild<CollisionShape2D>(0).Shape).Radius;
 
 		// Step 2: Convert the global position to the TileMap's local coordinate system
 		Vector2 circleLocalPosition = tileMap.ToLocal(circleGlobalPosition);

@@ -4,39 +4,39 @@ using System;
 public partial class Enemy : CharacterBody2D
 {
 	[Export]
-	public PackedScene enemyBullet;
-	public Marker2D bulletSpawnPoint;
-	public AnimatedSprite2D animatedSprite2D;
-	public Timer timer;
-	public TileMapLayer tilemap;
-	private bool movingRight = true;
-	private float baseMovementSpeed = 10;
-	private float movementSpeed;
-	private int touchedCorner = 0;
+	public PackedScene EnemyBulletScene;
+	public Marker2D BulletSpawnPoint;
+	public AnimatedSprite2D AnimatedSprite2D;
+	public Timer Timer;
+	public TileMapLayer Tilemap;
+	private bool _movingRight = true;
+	private float _baseMovementSpeed = 10;
+	private float _movementSpeed;
+	private int _touchedCorner = 0;
 	public override void _Ready()
 	{
-		movementSpeed = baseMovementSpeed;
+		_movementSpeed = _baseMovementSpeed;
 
 		SignalBus.Instance.Connect(SignalBus.SignalName.EnemySpeedChange, Callable.From<int>(OnSpeedChange));
 		SignalBus.Instance.Connect(SignalBus.SignalName.EnemyChangeDirection, Callable.From(OnChangeDirection));
 
-		animatedSprite2D = GetNode<AnimatedSprite2D>("%AnimatedSprite2D");
-		tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
-		bulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
+		AnimatedSprite2D = GetNode<AnimatedSprite2D>("%AnimatedSprite2D");
+		Tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
+		BulletSpawnPoint = GetNode<Marker2D>("%BulletSpawn");
 	}
 
 	public override void _Process(double delta)
 	{
-		Velocity = new Vector2(baseMovementSpeed, 0) * (movingRight ? movementSpeed : -movementSpeed);
+		Velocity = new Vector2(_baseMovementSpeed, 0) * (_movingRight ? _movementSpeed : -_movementSpeed);
 
 		MoveAndSlide();
 	}
 
 	private void OnChangeDirection()
 	{
-		movingRight = !movingRight;
-		touchedCorner++;
-		if (touchedCorner >= 2)
+		_movingRight = !_movingRight;
+		_touchedCorner++;
+		if (_touchedCorner >= 2)
 		{
 			MoveDown();
 		}
@@ -44,7 +44,7 @@ public partial class Enemy : CharacterBody2D
 
 	private void OnSpeedChange(int multiplySpeedBy)
 	{
-		movementSpeed = baseMovementSpeed * multiplySpeedBy;
+		_movementSpeed = _baseMovementSpeed * multiplySpeedBy;
 	}
 
 	private void MoveDown()
@@ -61,9 +61,8 @@ public partial class Enemy : CharacterBody2D
 
 	public void Shoot()
 	{
-		enemyBullet.Instantiate();
-		var bullet = enemyBullet.Instantiate<Node2D>();
-		bullet.GlobalPosition = bulletSpawnPoint.GlobalPosition;
+		var bullet = EnemyBulletScene.Instantiate<Node2D>();
+		bullet.GlobalPosition = BulletSpawnPoint.GlobalPosition;
 		GetNode("/root/Game").AddChild(bullet);
 	}
 }

@@ -3,27 +3,25 @@ using System;
 
 public partial class EnemyAreaEnd : Area2D
 {
-	private float debounceTime = 0.5f;
-	private Timer debounceTimer = new();
-
+	private float _debounceTime = 0.5f;
+	private Timer _debounceTimer = new();
 
 	public override void _Ready()
 	{
-		debounceTimer.WaitTime = debounceTime;
-		debounceTimer.OneShot = true;
-		AddChild(debounceTimer);
+		_debounceTimer.WaitTime = _debounceTime;
+		_debounceTimer.OneShot = true;
+		AddChild(_debounceTimer);
 
 		BodyEntered += OnBodyEntered;
 	}
 
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body is Enemy && debounceTimer.IsStopped())
+		if (body is Enemy && _debounceTimer.IsStopped())
 		{
-			debounceTimer.Start();
+			_debounceTimer.Start();
 			SignalBus.Instance.EmitSignal(SignalBus.SignalName.EnemyChangeDirection);
 		}
 	}
-
 
 }

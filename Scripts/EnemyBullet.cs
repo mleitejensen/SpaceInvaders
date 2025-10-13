@@ -3,17 +3,17 @@ using System;
 
 public partial class EnemyBullet : Bullet
 {
-	private Timer timer;
+	private Timer _timer;
 	[Export]
-	private PackedScene explosion;
+	private PackedScene _explosion;
 
 	public override void _Ready()
 	{
-		this.BodyEntered += OnBodyEntered;
-		speed = -500;
+		BodyEntered += OnBodyEntered;
+		Speed = -500;
 
-		timer = GetNode<Timer>("%Timer");
-		timer.Timeout += OnTimerTimeout;
+		_timer = GetNode<Timer>("%Timer");
+		_timer.Timeout += OnTimerTimeout;
 	}
 
 	private void OnBodyEntered(Node2D body)
@@ -33,7 +33,7 @@ public partial class EnemyBullet : Bullet
 	private void HandleBodyEntered(Vector2 collisionPosition)
 	{
 		SetDeferred("monitoring", false);
-		var newExplosion = explosion.Instantiate<Node2D>();
+		var newExplosion = _explosion.Instantiate<Node2D>();
 		newExplosion.GlobalPosition = collisionPosition;
 		GetParent().AddChild(newExplosion);
 	}

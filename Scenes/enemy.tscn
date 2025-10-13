@@ -31,7 +31,7 @@ animations = [{
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_v6rkq")
-enemyBullet = ExtResource("2_bvd4d")
+EnemyBulletScene = ExtResource("2_bvd4d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)

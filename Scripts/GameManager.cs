@@ -11,23 +11,23 @@ public partial class GameManager : Node2D
 	public PackedScene EnemyScene;
 	[Export]
 	public int NumberOfEnemies = 5;
-	private TileMapLayer tilemap;
+	private TileMapLayer _tilemap;
 	private const int NumberOfRows = 0;
-	private Node enemyGroup;
-	private RichTextLabel textScore;
-	private int score = 0;
-	private int playerLives = 3;
-	private Sprite2D healthSprite1;
-	private Sprite2D healthSprite2;
-	private Sprite2D healthSprite3;
+	private Node _enemyGroup;
+	private RichTextLabel _textScore;
+	private int _score = 0;
+	private int _playerLives = 3;
+	private Sprite2D _healthSprite1;
+	private Sprite2D _healthSprite2;
+	private Sprite2D _healthSprite3;
 	public override void _Ready()
 	{
-		tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
-		enemyGroup = GetNode<Node>("%Enemies");
-		textScore = GetNode<RichTextLabel>("%Score");
-		healthSprite1 = GetNode<Sprite2D>("%Heart1");
-		healthSprite2 = GetNode<Sprite2D>("%Heart2");
-		healthSprite3 = GetNode<Sprite2D>("%Heart3");
+		_tilemap = GetNode<TileMapLayer>("/root/Game/TileMapLayer");
+		_enemyGroup = GetNode<Node>("%Enemies");
+		_textScore = GetNode<RichTextLabel>("%Score");
+		_healthSprite1 = GetNode<Sprite2D>("%Heart1");
+		_healthSprite2 = GetNode<Sprite2D>("%Heart2");
+		_healthSprite3 = GetNode<Sprite2D>("%Heart3");
 
 
 		SignalBus.Instance.Connect(SignalBus.SignalName.ScoreUpdate, Callable.From<int>(OnScoreUpdate));
@@ -38,9 +38,9 @@ public partial class GameManager : Node2D
 			for (int rowIndex = -7; rowIndex < NumberOfRows; rowIndex++)
 			{
 				var enemy = EnemyScene.Instantiate<CharacterBody2D>();
-				var targetPosition = tilemap.MapToLocal(tilemap.LocalToMap(new Vector2(tilemap.TileSet.TileSize.X * index, tilemap.TileSet.TileSize.Y * rowIndex)));
+				var targetPosition = _tilemap.MapToLocal(_tilemap.LocalToMap(new Vector2(_tilemap.TileSet.TileSize.X * index, _tilemap.TileSet.TileSize.Y * rowIndex)));
 				enemy.Position = targetPosition;
-				enemyGroup.AddChild(enemy);
+				_enemyGroup.AddChild(enemy);
 			}
 		}
 
@@ -53,10 +53,10 @@ public partial class GameManager : Node2D
 
 	private void OnScoreUpdate(int addScore)
 	{
-		score += addScore;
-		textScore.Text = $"Score: {score}";
+		_score += addScore;
+		_textScore.Text = $"Score: {_score}";
 
-		var list = enemyGroup.GetChildren().ToList();
+		var list = _enemyGroup.GetChildren().ToList();
 		if (list.Count <= 40)
 		{
 			GD.Print("40 enemies left, multiplying by 4");
@@ -71,18 +71,18 @@ public partial class GameManager : Node2D
 
 	private void OnHealthUpdate(int damage)
 	{
-		playerLives -= damage;
+		_playerLives -= damage;
 
-		switch (playerLives)
+		switch (_playerLives)
 		{
 			case 2:
-				healthSprite3.Visible = false;
+				_healthSprite3.Visible = false;
 				break;
 			case 1:
-				healthSprite2.Visible = false;
+				_healthSprite2.Visible = false;
 				break;
 			case 0:
-				healthSprite1.Visible = false;
+				_healthSprite1.Visible = false;
 				break;
 		}
 

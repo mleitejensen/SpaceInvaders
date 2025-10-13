@@ -6,16 +6,15 @@ using System.Linq;
 
 public partial class EnemyManager : Node
 {
-	private Timer timerEnemyShoot;
-	private Node enemyGroupNode;
 	public List<Enemy> Enemies { get; set; }
+	private Timer _timerEnemyShoot;
+	private Node _enemyGroupNode;
+	private float _waitTime = 1;
 
 	public override void _Ready()
 	{
-		enemyGroupNode = GetNode<Node>("%Enemies");
-
-		timerEnemyShoot = GetNode<Timer>("%EnemyShoot");
-		timerEnemyShoot.Timeout += OnEnemyShoot;
+		_enemyGroupNode = GetNode<Node>("%Enemies");
+		AddNewTimer();
 	}
 
 	public override void _Process(double delta)
@@ -34,25 +33,33 @@ public partial class EnemyManager : Node
 		enemy.Shoot();
 	}
 
+	private void AddNewTimer()
+	{
+		Timer timer = new();
+		timer.Timeout += OnEnemyShoot;
+		timer.WaitTime = _waitTime;
+		timer.Autostart = true;
+		timer.OneShot = false;
+		AddChild(timer);
+	}
+
 	private Enemy GetLowestEnemies()
 	{
-		var list = enemyGroupNode.GetChildren().ToList();
+		var children = _enemyGroupNode.GetChildren().ToList();
 
-		if (list.Count == 0)
+		if (children.Count == 0)
 		{
 			return null;
 		}
 
-		Enemies = GetEnemies(list);
+		Enemies = GetEnemies(children);
 
 		if (Enemies is null)
 		{
 			return null;
 		}
 
-
 		List<Enemy> canShoot = new();
-
 		List<Godot.Vector2> positions = new();
 
 		foreach (var enemy in Enemies)
@@ -65,14 +72,13 @@ public partial class EnemyManager : Node
 
 		foreach (var enemy in Enemies)
 		{
-
 			if (canShoot == null)
 			{
 				GD.Print("first");
 				canShoot.Add(enemy);
 			}
 
-			var foundEnemy = canShoot.Find((e) => e.Position.X == enemy.Position.X);
+			var foundEnemy = canShoot.Find(e => e.Position.X == enemy.Position.X);
 			if (foundEnemy == null)
 			{
 				// First enemy at this X position, add it
@@ -96,15 +102,15 @@ public partial class EnemyManager : Node
 	}
 
 
-	private List<Enemy> GetEnemies(List<Node> list)
+	private List<Enemy> GetEnemies(List<Node> nodes)
 	{
 		List<Enemy> enemies = new();
 
-		foreach (var enemy in list)
+		foreach (var node in nodes)
 		{
-			if (enemy is Enemy e)
+			if (node is Enemy enemy)
 			{
-				enemies.Add(e);
+				enemies.Add(enemy);
 			}
 		}
 
